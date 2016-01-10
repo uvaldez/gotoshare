@@ -30,3 +30,14 @@ h3 {
 .main-form{width: 218px;
     margin: 0 auto;}
 .main-form input{text-align: center;}
+
+.button-wrapper{display:inline-block;font-size: 2rem;
+    padding:.7em 1.4em;
+    line-height: normal;}
+.button-wrapper .btn-primary{padding-right:50px;padding-left:50px}
+
+.form-main span{font-size: 14px;
+    color: gray;
+    position: absolute;
+    top: 7px;
+    margin-left: 5px;}

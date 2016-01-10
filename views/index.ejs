@@ -7,12 +7,19 @@
         <h1>GoToShare</h1>
         <h3>Free real time file sharing and video chat, no registration, easy and fast</h3>
         <br>
+      
         <div class="input-group input-group-lg main-form">
-          <form name="startMeeting" id="startMeeting">
-            <input name="roomName" placeholder="Name of the room" class="form-control" aria-describedby="sizing-addon1">
+          <form name="startMeeting" id="startMeeting" method="POST" action="/start">
+              <div class="form-main">
+                  <input type="text" name="roomName" placeholder="Name of the room" class="form-control" id="roomName" aria-describedby="sizing-addon1"><span id="length">12</span>
+              </div>
+            <div class="button-wrapper">
+              <button class="btn btn-primary btn-lg">Start
+            </div>
           </form>
         </div>
       </div>
     </header>
   </body>
+  <% include includes/footer %>
 </html>
