@@ -29,10 +29,16 @@ var timestampStart;
 var statsInterval = null;
 var bitrateMax = 0;
 
+//fileInput.addEventListener('change', sendData, false);
 fileInput.addEventListener('change', createConnection, false);
 
 function createConnection() {
-  var servers = null;
+  var servers = {
+    'iceServers': [{
+      'url': 'stun:stun.l.google.com:19302'
+    }]
+  };
+  var servers1 = 'stun:stun.l.google.com:19302';
   pcConstraint = null;
 
   // Add localConnection to global scope to make it visible
@@ -88,6 +94,7 @@ function sendData() {
     reader.onload = (function() {
       return function(e) {
         sendChannel.send(e.target.result);
+        console.log('sent uziel:'+e.target.result);
         if (file.size > offset + e.target.result.byteLength) {
           window.setTimeout(sliceFile, 0, offset + chunkSize);
         }
@@ -206,7 +213,7 @@ function onReceiveMessageCallback(event) {
       statsInterval = null;
     }
 
-    closeDataChannels();
+    //closeDataChannels();
   }
 }
 

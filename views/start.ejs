@@ -3,6 +3,7 @@
 <% include includes/start_header %>
 <link rel="stylesheet" type="text/css" href="/stylesheets/upload/main.css">
 <link rel="stylesheet" type="text/css" href="/stylesheets/upload/main-inputs.css">
+<link rel="stylesheet" type="text/css" href="/stylesheets/chat.css">
 <body>
 	<div class="container-fluid">
 		<div class="row-fluid">
@@ -12,7 +13,9 @@
 				<div id='subscribersDiv' class="videoBox"></div> 
 			</div>
 			<div class="col-md-4 bg-info">
-				<div id="chat" class="chatBox"></div>
+				<div id="chat" class="chatBox">
+					<% include includes/chat %>
+				</div>
 			</div>
 			<div class="col-md-8">
 				<div class="fileSection">
@@ -40,7 +43,9 @@
 	</div>
 </body>
 <script type="text/javascript" src="/javascripts/opentok.variables.js"></script>
+<script type="text/javascript" src="/javascripts/chat.js"></script>
+<!---<script type="text/javascript" src="/javascripts/upload/test.js"></script>
  <script src="/javascripts/upload/adapter.js"></script>
   <script src="/javascripts/upload/common.js"></script>
-  <script src="/javascripts/upload/main.js"></script>
+  <script src="/javascripts/upload/main.js"></script>---->
 </html>
