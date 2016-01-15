@@ -50,4 +50,8 @@ router.get('/start/actor2',function(req, res, next){
 	//console.log(actors);
 	res.send(200);
 });
+
+router.get('/start/test',function(req, res, next){
+	res.render('test');
+});
 module.exports = router;
