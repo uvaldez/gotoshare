@@ -6,9 +6,8 @@ session.on({
   streamCreated: function(event) { 
     session.subscribe(event.stream, 'subscribersDiv', {insertMode: 'append'}); 
   } 
-}); 
-/*console.log(session.label());
-	session.connect(token, function(error) {
+});
+/*	session.connect(token, function(error) {
 	if (error) {
 	  console.log(error.message);
 	} else {

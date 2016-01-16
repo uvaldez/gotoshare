@@ -32,6 +32,8 @@
 .msg_receive{
     padding-left:0;
     margin-left:0;
+    font-style: italic;
+    background:aliceblue !important;
 }
 .msg_sent{
     padding-bottom:20px !important;
@@ -63,6 +65,7 @@ img {
 }
 .avatar {
     position: relative;
+    width: 15%
 }
 .base_receive > .avatar:after {
     content: "";
@@ -73,7 +76,7 @@ img {
     height: 0;
     border: 5px solid #FFF;
     border-left-color: rgba(0, 0, 0, 0);
-    border-bottom-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);    
 }
 
 .base_sent {
@@ -121,4 +124,7 @@ img {
     position:fixed;
     left:0px;
     bottom:0;
+}
+.input-group .form-control, .input-group-addon, .input-group-btn {
+    display: inline-block important;
 }
