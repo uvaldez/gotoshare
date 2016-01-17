@@ -7,11 +7,13 @@
 <body>
 	<div class="container-fluid">
 		<div class="row-fluid">
-			<h1>Welcome to <span>#<%=roomName%></span> room</h1>
+			<h1>Welcome to <span>#<%=params.room%></span> room</h1>
 			<div class="col-md-8 bg-primary">
 				<div id="myPublisherDiv" class="videoBox"></div>
 				<div id='subscribersDiv' class="videoBox"></div> 
 			</div>
+			<input type="hidden" value="<%=params.opentokSessionId%>" id="opentokSessionId">
+			<input type="hidden" value="<%=params.opentokToken%>" id="opentokToken">
 			<div class="col-md-4 bg-info">
 				<div id="chat" class="chatBox">
 					<% include includes/chat %>

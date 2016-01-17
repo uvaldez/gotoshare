@@ -7,11 +7,14 @@
 
   //first an observable is added for the keydown event in the roomName element
   roomNameKeydownStream = Rx.Observable.fromEvent(roomName,'keydown')
-  	.map(function(e){		
+  	.map(function(e){
   		if(e.keyCode == 8 || e.keyCode == 46)//if user press backspace or delete key it will update the label  		
   			return (roomNameMaxLength - e.target.value.length)+1;
   		if(e.target.value.length >= roomNameMaxLength)//if length value has rich max length allowed we stop the user from entering more characters
   			e.preventDefault();
+      if( e.keyCode === 13 ){//if user hit enter it will redirect to start the meeting
+        window.location.href = "/start/"+e.target.value;
+      }      
   		return roomNameMaxLength - e.target.value.length;
   	})
 	.distinctUntilChanged();
