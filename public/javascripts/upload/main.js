@@ -29,27 +29,25 @@ var timestampStart;
 var statsInterval = null;
 var bitrateMax = 0;
 
-//fileInput.addEventListener('change', sendData, false);
 fileInput.addEventListener('change', createConnection, false);
 
 function createConnection() {
-  var servers = {
-    'iceServers': [{
-      'url': 'stun:stun.l.google.com:19302'
-    }]
-  };
-  var servers1 = 'stun:stun.l.google.com:19302';
+  var iceServers = [{
+    url: 'stun:stun.l.google.com:19302'
+  }];
+
+  var servers = iceServers;
   pcConstraint = null;
 
   // Add localConnection to global scope to make it visible
   // from the browser console.
   window.localConnection = localConnection = new RTCPeerConnection(servers,
       pcConstraint);
-  trace('Created local peer connection object localConnection');
+  //console.log('Created local peer connection object localConnection');
 
   sendChannel = localConnection.createDataChannel('sendDataChannel');
   sendChannel.binaryType = 'arraybuffer';
-  trace('Created send data channel');
+  //console.log('Created send data channel');
 
   sendChannel.onopen = onSendChannelStateChange;
   sendChannel.onclose = onSendChannelStateChange;
@@ -60,7 +58,7 @@ function createConnection() {
   // from the browser console.
   window.remoteConnection = remoteConnection = new RTCPeerConnection(servers,
       pcConstraint);
-  trace('Created remote peer connection object remoteConnection');
+  //console.log('Created remote peer connection object remoteConnection');
 
   remoteConnection.onicecandidate = iceCallback2;
   remoteConnection.ondatachannel = receiveChannelCallback;
@@ -69,13 +67,13 @@ function createConnection() {
 }
 
 function onCreateSessionDescriptionError(error) {
-  trace('Failed to create session description: ' + error.toString());
+  //console.log('Failed to create session description: ' + error.toString());
 }
 
 function sendData() {
   var file = fileInput.files[0];
-  trace('file is ' + [file.name, file.size, file.type,
-      file.lastModifiedDate].join(' '));
+  //console.log('file is ' + [file.name, file.size, file.type,
+    //  file.lastModifiedDate].join(' '));
 
   // Handle 0 size files.
   statusMessage.textContent = '';
@@ -94,7 +92,6 @@ function sendData() {
     reader.onload = (function() {
       return function(e) {
         sendChannel.send(e.target.result);
-        console.log('sent uziel:'+e.target.result);
         if (file.size > offset + e.target.result.byteLength) {
           window.setTimeout(sliceFile, 0, offset + chunkSize);
         }
@@ -108,18 +105,18 @@ function sendData() {
 }
 
 function closeDataChannels() {
-  trace('Closing data channels');
+  //console.log('Closing data channels');
   sendChannel.close();
-  trace('Closed data channel with label: ' + sendChannel.label);
+  //console.log('Closed data channel with label: ' + sendChannel.label);
   if (receiveChannel) {
     receiveChannel.close();
-    trace('Closed data channel with label: ' + receiveChannel.label);
+    //console.log('Closed data channel with label: ' + receiveChannel.label);
   }
   localConnection.close();
   remoteConnection.close();
   localConnection = null;
   remoteConnection = null;
-  trace('Closed peer connections');
+  //console.log('Closed peer connections');
 
   // re-enable the file select
   fileInput.disabled = false;
@@ -127,7 +124,7 @@ function closeDataChannels() {
 
 function gotDescription1(desc) {
   localConnection.setLocalDescription(desc);
-  trace('Offer from localConnection \n' + desc.sdp);
+  //console.log('Offer from localConnection \n' + desc.sdp);
   remoteConnection.setRemoteDescription(desc);
   remoteConnection.createAnswer(gotDescription2,
       onCreateSessionDescriptionError);
@@ -135,38 +132,38 @@ function gotDescription1(desc) {
 
 function gotDescription2(desc) {
   remoteConnection.setLocalDescription(desc);
-  trace('Answer from remoteConnection \n' + desc.sdp);
+  //console.log('Answer from remoteConnection \n' + desc.sdp);
   localConnection.setRemoteDescription(desc);
 }
 
 function iceCallback1(event) {
-  trace('local ice callback');
+  //console.log('local ice callback');
   if (event.candidate) {
     remoteConnection.addIceCandidate(event.candidate,
         onAddIceCandidateSuccess, onAddIceCandidateError);
-    trace('Local ICE candidate: \n' + event.candidate.candidate);
+    //console.log('Local ICE candidate: \n' + event.candidate.candidate);
   }
 }
 
 function iceCallback2(event) {
-  trace('remote ice callback');
+  //console.log('remote ice callback');
   if (event.candidate) {
     localConnection.addIceCandidate(event.candidate,
         onAddIceCandidateSuccess, onAddIceCandidateError);
-    trace('Remote ICE candidate: \n ' + event.candidate.candidate);
+    //console.log('Remote ICE candidate: \n ' + event.candidate.candidate);
   }
 }
 
 function onAddIceCandidateSuccess() {
-  trace('AddIceCandidate success.');
+  //console.log('AddIceCandidate success.');
 }
 
 function onAddIceCandidateError(error) {
-  trace('Failed to add Ice Candidate: ' + error.toString());
+  //console.log('Failed to add Ice Candidate: ' + error.toString());
 }
 
 function receiveChannelCallback(event) {
-  trace('Receive Channel Callback');
+  //console.log('Receive Channel Callback');
   receiveChannel = event.channel;
   receiveChannel.binaryType = 'arraybuffer';
   receiveChannel.onmessage = onReceiveMessageCallback;
@@ -184,7 +181,7 @@ function receiveChannelCallback(event) {
 }
 
 function onReceiveMessageCallback(event) {
-  // trace('Received Message ' + event.data.byteLength);
+  // //console.log('Received Message ' + event.data.byteLength);
   receiveBuffer.push(event.data);
   receivedSize += event.data.byteLength;
 
@@ -207,19 +204,19 @@ function onReceiveMessageCallback(event) {
         ((new Date()).getTime() - timestampStart));
     bitrateDiv.innerHTML = '<strong>Average Bitrate:</strong> ' +
         bitrate + ' kbits/sec (max: ' + bitrateMax + ' kbits/sec)';
-
+        $("#filecompleted").click();
     if (statsInterval) {
       window.clearInterval(statsInterval);
       statsInterval = null;
     }
 
-    //closeDataChannels();
+    closeDataChannels();
   }
 }
 
 function onSendChannelStateChange() {
   var readyState = sendChannel.readyState;
-  trace('Send channel state is: ' + readyState);
+  //console.log('Send channel state is: ' + readyState);
   if (readyState === 'open') {
     sendData();
   }
@@ -227,7 +224,7 @@ function onSendChannelStateChange() {
 
 function onReceiveChannelStateChange() {
   var readyState = receiveChannel.readyState;
-  trace('Receive channel state is: ' + readyState);
+  //console.log('Receive channel state is: ' + readyState);
   if (readyState === 'open') {
     timestampStart = (new Date()).getTime();
     timestampPrev = timestampStart;

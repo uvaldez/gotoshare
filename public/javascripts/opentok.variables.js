@@ -1,17 +1,28 @@
 var apiKey = '45462192',
-	apiSecret = 'bb2477020e3ab230ce9b33b2fc8051807bd3dbcd',
 	sessionId = document.querySelector("#opentokSessionId"),
 	token = document.querySelector("#opentokToken"),
 	session = OT.initSession(apiKey, sessionId.value);
+$(".publisher").css({"width":"100%"});
+$(".loading").show();
 session.on({ 
-  streamCreated: function(event) { 
-    session.subscribe(event.stream, 'subscribersDiv', {insertMode: 'append'}); 
-  } 
+  streamCreated: function(event) {
+    if ( $("#subscribersDiv").find(".OT_subscriber").length == 0){
+	    session.subscribe(event.stream, 'subscribersDiv', {width: "100%", height: 400, insertMode: 'append'});
+	    $(".publisher").css({"width":"49%"}); 
+	    $("#subscribersDiv").css({"display":"inline-block"});
+    }
+  },
+  streamDestroyed: function(event){
+	$("#subscribersDiv").css({"display":"none"});
+	$(".publisher").css({"width":"100%"});
+  }
 });
 session.connect(token.value, function(error) {
 	if (error) {
 	  console.log(error.message);
 	} else {
-	  session.publish('myPublisherDiv', {width: 320, height: 240}); 
+		$(".publisher").css({"display":"inline-block"});
+		$(".loading").hide();
+	  	session.publish('myPublisherDiv', {width: "100%", height: 400}); 
 	}
 });

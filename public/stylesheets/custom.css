@@ -29,7 +29,7 @@ h3 {
 
 .main-form{width: 218px;
     margin: 0 auto;}
-.main-form input{text-align: center;}
+.main-form input{text-align:center; margin-bottom:10px !important}
 h1 span{color:#337ab7;}
 .button-wrapper{display:inline-block;font-size: 2rem;
     padding:.7em 1.4em;
@@ -42,11 +42,25 @@ h1 span{color:#337ab7;}
     top: 7px;
     margin-left: 5px;}
 
+.video-chat{padding:0px}
 .videoBox{display: inline-block;
-    border: 1px solid;
     width: 49%;
     height: 400px;
-    margin: 3px;}
-.chatBox{display:inline-block;border:1px solid #fff;width:100%;margin:5px; height:440px;padding-top: 10px;}
+    margin-left: 3px;
+    margin-right: 3px;}
+.videoBox label{margin-left: 5px}
+.publisher{display:none;width:49%; height:420px}
+#subscribersDiv{display: none}
+
+.chatBox{display:inline-block;border:1px solid #fff;width:100%;margin:5px; height:411px;padding-top: 10px;}
 
 .fileSection{margin: 10px 0px 20px 0px;}
+
+.user-name{padding-left:1px !important}
+
+/*#username-label{display:none;margin-left:0px}*/
+#username-label p{font-size:12px}
+
+.loading{background: url(../images/ajax-loader.gif) no-repeat; margin: 0 auto; width: 54px; height: 55px}
+
+#filecompleted{display:none;}

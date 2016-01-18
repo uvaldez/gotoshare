@@ -7,13 +7,32 @@
 <body>
 	<div class="container-fluid">
 		<div class="row-fluid">
-			<h1>Welcome to <span>#<%=params.room%></span> room</h1>
-			<div class="col-md-8 bg-primary">
-				<div id="myPublisherDiv" class="videoBox"></div>
-				<div id='subscribersDiv' class="videoBox"></div> 
+			<h1>Welcome to <span>#<%=params.room%></span>'s room</h1>
+			<div class="row" id="username-container">
+				<div class="col-md-4">
+					<div class="navbar-form navbar-left user-name">
+					  <div class="form-group">
+					    <input type="text" id="btn-username" class="form-control" placeholder="Please enter your name">
+					  </div>
+					  <button id="apply" class="btn btn-success">Apply</button>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-8 video-chat">
+				<div class="loading"></div>
+				<div class="publisher videoBox bg-primary">
+					<label id="username-label">You</label>
+					<div id="myPublisherDiv">						
+					</div>
+				</div>
+				<div id='subscribersDiv' class="videoBox bg-primary">
+					<label id="guest-label">Guest</label>
+				</div>
 			</div>
 			<input type="hidden" value="<%=params.opentokSessionId%>" id="opentokSessionId">
 			<input type="hidden" value="<%=params.opentokToken%>" id="opentokToken">
+			<input type="hidden" value="Guest" id="user_name">
+			<input type="hidden" value="<%=params.room%>" id="channel">
 			<div class="col-md-4 bg-info">
 				<div id="chat" class="chatBox">
 					<% include includes/chat %>
@@ -33,11 +52,11 @@
 				      <div class="progress">
 				        <div class="label">Receive progress: </div>
 				        <progress id="receiveProgress" max="0" value="0"></progress>
-				      </div>
-
+				      </div>				      
 				      <div id="bitrate"></div>
-				      <a id="download"></a>
+				      <a id="download" href=""></a>
 				      <span id="status"></span>
+					<button id="filecompleted"></button>
 			      </section>			      
 			    </div>
 			</div>
@@ -50,8 +69,6 @@
 <script type="text/javascript" src="https://cdn.pubnub.com/pubnub.min.js"></script>
 <script type="text/javascript" src="/javascripts/chat.js"></script>
 <script type="text/javascript" src="/javascripts/chatWindow.js"></script>
-<!---<script type="text/javascript" src="/javascripts/upload/test.js"></script>
- <script src="/javascripts/upload/adapter.js"></script>
-  <script src="/javascripts/upload/common.js"></script>
-  <script src="/javascripts/upload/main.js"></script>---->
+<script src="/javascripts/upload/adapter.js"></script>
+<script src="/javascripts/upload/main.js"></script>
 </html>
