@@ -89,7 +89,7 @@ if (typeof window === 'undefined' || !window.navigator) {
   webrtcUtils.log('This does not appear to be a browser');
   webrtcDetectedBrowser = 'not a browser';
 } else if (navigator.mozGetUserMedia && window.mozRTCPeerConnection) {
-  webrtcUtils.log('This appears to be Firefox');
+  //webrtcUtils.log('This appears to be Firefox');
 
   webrtcDetectedBrowser = 'firefox';
 
@@ -232,7 +232,7 @@ if (typeof window === 'undefined' || !window.navigator) {
     };
   }
 } else if (navigator.webkitGetUserMedia && window.webkitRTCPeerConnection) {
-  webrtcUtils.log('This appears to be Chrome');
+  //webrtcUtils.log('This appears to be Chrome');
 
   webrtcDetectedBrowser = 'chrome';
 

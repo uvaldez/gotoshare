@@ -13,11 +13,9 @@ var remoteConnection;
 var sendChannel;
 var receiveChannel;
 var pcConstraint;
-var bitrateDiv = document.querySelector('div#bitrate');
 var fileInput = document.querySelector('input#fileInput');
 var downloadAnchor = document.querySelector('a#download');
 var sendProgress = document.querySelector('progress#sendProgress');
-var receiveProgress = document.querySelector('progress#receiveProgress');
 var statusMessage = document.querySelector('span#status');
 
 var receiveBuffer = [];
@@ -29,7 +27,11 @@ var timestampStart;
 var statsInterval = null;
 var bitrateMax = 0;
 
-fileInput.addEventListener('change', createConnection, false);
+var fileInputChangeStream = Rx.Observable.fromEvent(fileInput, "change");
+
+fileInputChangeStream.subscribe(function(){
+  createConnection();
+});
 
 function createConnection() {
   var iceServers = [{
@@ -85,7 +87,7 @@ function sendData() {
     return;
   }
   sendProgress.max = file.size;
-  receiveProgress.max = file.size;
+  //receiveProgress.max = file.size;
   var chunkSize = 16384;
   var sliceFile = function(offset) {
     var reader = new window.FileReader();
@@ -185,7 +187,7 @@ function onReceiveMessageCallback(event) {
   receiveBuffer.push(event.data);
   receivedSize += event.data.byteLength;
 
-  receiveProgress.value = receivedSize;
+  //receiveProgress.value = receivedSize;
 
   // we are assuming that our signaling protocol told
   // about the expected file size (and name, hash, etc).
@@ -200,10 +202,11 @@ function onReceiveMessageCallback(event) {
       'Click to download \'' + file.name + '\' (' + file.size + ' bytes)';
     downloadAnchor.style.display = 'block';
 
-    var bitrate = Math.round(receivedSize * 8 /
+    /*var bitrate = Math.round(receivedSize * 8 /
         ((new Date()).getTime() - timestampStart));
     bitrateDiv.innerHTML = '<strong>Average Bitrate:</strong> ' +
-        bitrate + ' kbits/sec (max: ' + bitrateMax + ' kbits/sec)';
+        bitrate + ' kbits/sec (max: ' + bitrateMax + ' kbits/sec)';*/
+        //triger to send a message to indicate that the file has been upload
         $("#filecompleted").click();
     if (statsInterval) {
       window.clearInterval(statsInterval);
@@ -237,8 +240,8 @@ function onReceiveChannelStateChange() {
 // display bitrate statistics.
 function displayStats() {
   var display = function(bitrate) {
-    bitrateDiv.innerHTML = '<strong>Current Bitrate:</strong> ' +
-        bitrate + ' kbits/sec';
+    // bitrateDiv.innerHTML = '<strong>Current Bitrate:</strong> ' +
+    //     bitrate + ' kbits/sec';
   };
 
   if (remoteConnection &&

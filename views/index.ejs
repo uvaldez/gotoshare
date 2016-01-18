@@ -1,13 +1,13 @@
 <!DOCTYPE html>  
 <html lang="en">  
   <% include includes/head %>
-  <body>
+  <body id="fullPage">
+
     <header id="top" class="header">
       <div class="text-vertical-center">
         <h1>GoToShare</h1>
         <h3>Free real time file sharing and video chat, no registration, easy and fast</h3>
         <br>
-      
         <div class="input-group input-group-lg main-form">
           <div class="form-main">
               <input type="text" name="roomName" placeholder="Name of the room" class="form-control" id="roomName" aria-describedby="sizing-addon1"><span id="length">12</span>
@@ -18,6 +18,7 @@
         </div>
       </div>
     </header>
-  </body>
-  <% include includes/footer %>
+    <script src="/javascripts/rx.all.min.js"></script>
+    <script src="/javascripts/custom.js"></script>
+  </body>  
 </html>

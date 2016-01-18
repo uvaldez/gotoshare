@@ -17,7 +17,7 @@ session.on({
 	$(".publisher").css({"width":"100%"});
   }
 });
-session.connect(token.value, function(error) {
+/*session.connect(token.value, function(error) {
 	if (error) {
 	  console.log(error.message);
 	} else {
@@ -25,4 +25,4 @@ session.connect(token.value, function(error) {
 		$(".loading").hide();
 	  	session.publish('myPublisherDiv', {width: "100%", height: 400}); 
 	}
-});
+});*/

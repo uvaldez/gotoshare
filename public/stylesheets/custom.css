@@ -8,7 +8,7 @@ html,body {
     position: relative;
     width: 100%;
     height: 100%;
-    background: url(../images/bg.jpg) no-repeat center center scroll;
+    background: url(../images/bg0.jpg) no-repeat center center scroll;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;}
@@ -26,6 +26,8 @@ html,body {
 h3 {
     font-size: 24px;
 }
+
+.black{color: #000 !important}
 
 .main-form{width: 218px;
     margin: 0 auto;}
@@ -64,3 +66,6 @@ h1 span{color:#337ab7;}
 .loading{background: url(../images/ajax-loader.gif) no-repeat; margin: 0 auto; width: 54px; height: 55px}
 
 #filecompleted{display:none;}
+
+.gohome{float: right;color: #000;font-size: 28px;font-weight: bold}
+.gohome :hover{text-decoration: none !important}

@@ -36,13 +36,4 @@
       }
   });
 
-setInterval(function() {
-  random = Math.floor(Math.random()*4);
-  $('.header')
-    .animate({opacity: 0}, 'slow', function() {
-        $(this)
-            .css({'background-image': 'url(/images/bg'+random+'.jpg)'})
-            .animate({opacity: 1});
-    });
-  },500);
 }());

@@ -1,6 +1,6 @@
 {
-  "name": "got2share",
-  "version": "0.0.0",
+  "name": "go2share",
+  "version": "1.0.0",  
   "private": true,
   "scripts": {
     "start": "node ./bin/www"
@@ -15,5 +15,9 @@
     "opentok": "^2.3.0",
     "serve-favicon": "~2.3.0",
     "simple-actors": "^2.0.0"
-  }
+  },
+  "author": "@UzielValdez",
+  "engines": {
+      "node": "4.2.4"
+    }
 }

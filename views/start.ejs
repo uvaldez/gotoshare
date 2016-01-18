@@ -1,74 +1,36 @@
 <!DOCTYPE html>  
 <html lang="en">
-<% include includes/start_header %>
+<% include includes/head %>
 <link rel="stylesheet" type="text/css" href="/stylesheets/upload/main.css">
 <link rel="stylesheet" type="text/css" href="/stylesheets/upload/main-inputs.css">
 <link rel="stylesheet" type="text/css" href="/stylesheets/chat.css">
 <body>
 	<div class="container-fluid">
 		<div class="row-fluid">
-			<h1>Welcome to <span>#<%=params.room%></span>'s room</h1>
-			<div class="row" id="username-container">
-				<div class="col-md-4">
-					<div class="navbar-form navbar-left user-name">
-					  <div class="form-group">
-					    <input type="text" id="btn-username" class="form-control" placeholder="Please enter your name">
-					  </div>
-					  <button id="apply" class="btn btn-success">Apply</button>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-8 video-chat">
-				<div class="loading"></div>
-				<div class="publisher videoBox bg-primary">
-					<label id="username-label">You</label>
-					<div id="myPublisherDiv">						
-					</div>
-				</div>
-				<div id='subscribersDiv' class="videoBox bg-primary">
-					<label id="guest-label">Guest</label>
-				</div>
-			</div>
+			<h1>Welcome to <span>#<%=params.room%></span>'s room <a href="/" class="gohome">GoToShare</a></h1>			
+			<!-- Update user name section -->
+			<% include includes/updateUser %>
+			
+			<!-- Video chat container -->
+			<% include includes/video %>
+
 			<input type="hidden" value="<%=params.opentokSessionId%>" id="opentokSessionId">
 			<input type="hidden" value="<%=params.opentokToken%>" id="opentokToken">
 			<input type="hidden" value="Guest" id="user_name">
 			<input type="hidden" value="<%=params.room%>" id="channel">
+
+			<!-- Chat window -->
 			<div class="col-md-4 bg-info">
 				<div id="chat" class="chatBox">
 					<% include includes/chat %>
 				</div>
 			</div>
-			<div class="col-md-8">
-				<div class="fileSection">
-			      <form id="fileInfo">
-			        <input type="file" class="list-group-item list-group-item-warning" id="fileInput" name="files"/>
-			      </form>
-			      <section>
-				      <div class="progress">
-				        <div class="label">Send progress: </div>
-				        <progress id="sendProgress" max="0" value="0"></progress>
-				      </div>
 
-				      <div class="progress">
-				        <div class="label">Receive progress: </div>
-				        <progress id="receiveProgress" max="0" value="0"></progress>
-				      </div>				      
-				      <div id="bitrate"></div>
-				      <a id="download" href=""></a>
-				      <span id="status"></span>
-					<button id="filecompleted"></button>
-			      </section>			      
-			    </div>
-			</div>
+			<!-- File upload section -->
+			<% include includes/fileUpload %>
+
 		</div>
 	</div>
+	<% include includes/footer %>
 </body>
-<script type="text/javascript" src="/javascripts/opentok.variables.js"></script>
-<script type="text/javascript" src="/javascripts/rx.all.min.js"></script>
-<script type="text/javascript" src="/javascripts/rx.dom.min.js"></script>
-<script type="text/javascript" src="https://cdn.pubnub.com/pubnub.min.js"></script>
-<script type="text/javascript" src="/javascripts/chat.js"></script>
-<script type="text/javascript" src="/javascripts/chatWindow.js"></script>
-<script src="/javascripts/upload/adapter.js"></script>
-<script src="/javascripts/upload/main.js"></script>
 </html>
