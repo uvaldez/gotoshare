@@ -9,7 +9,8 @@
 //configuration for pubnub api
 PUBNUB.init({
     publish_key: 'pub-c-17c0177d-d952-4745-a506-5019121be7f1',
-    subscribe_key: 'sub-c-04342e80-bad1-11e5-8b32-02ee2ddab7fe'
+    subscribe_key: 'sub-c-04342e80-bad1-11e5-8b32-02ee2ddab7fe',
+    ssl: true
   });
 
 // user object each user has a unique id
