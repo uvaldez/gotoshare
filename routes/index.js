@@ -37,7 +37,7 @@ router.get('/start/:room', function(req, res, next) {
 			  	if ( err ) return console.log( err );
 			  	// generate token with room name
 				params.opentokToken = session.generateToken({
-							 			role :       'publisher',
+							 			role :       'moderator',
 							  			expireTime : (new Date().getTime() / 1000)+(7 * 24 * 60 * 60), // in one week
 							  			data :       'name=' + params.room
 									});
