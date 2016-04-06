@@ -19,6 +19,6 @@
   "author": "@UzielValdez",
   "engines": {
       "node": "4.2.4",
-      "npm":"1.3.21"
+      "npm":"3.8.5"
     }
 }
