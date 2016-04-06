@@ -5,14 +5,14 @@ var OpenTok = require('opentok');
 rooms = [];
 
 /* GET home page. */
-router.get('/', function(req, res, next) {	
-  res.render('index'); 
+router.get('/', function(req, res, next) {
+  res.render('index');
 });
 
 router.get('/start/:room', function(req, res, next) {
 	// Opentok configuration
-	var apiKey = '45462192',
-		apiSecret = 'bb2477020e3ab230ce9b33b2fc8051807bd3dbcd',
+	var apiKey = '45552512',
+		apiSecret = '04530cabfc1cf7c67b898fb1c6687025bc48eab0',
 		opentok = new OpenTok(apiKey, apiSecret),
 		params = {};
 		params.room = req.params.room;

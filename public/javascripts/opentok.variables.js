@@ -1,4 +1,4 @@
-var apiKey = '45462192',
+var apiKey = '45552512',
 	sessionId = document.querySelector( "#opentokSessionId" ),
 	token = document.querySelector( "#opentokToken" ),
 	session = OT.initSession( apiKey, sessionId.value );
@@ -7,13 +7,13 @@ var apiKey = '45462192',
 $( ".publisher" ).css( {"width": "100%"} );
 $( ".loading" ).show();
 
-session.on({ 
+session.on({
   streamCreated: function( event ) {
   	// if there is not any subscriber already we add new stream
     if ( $( "#subscribersDiv" ).find( ".OT_subscriber" ).length == 0 ){
-	    session.subscribe( event.stream, 'subscribersDiv', 
+	    session.subscribe( event.stream, 'subscribersDiv',
 	    	{ width: "100%", height: 400, insertMode: 'append'} );
-	    $( ".publisher" ).css( {"width": "49%"} ); 
+	    $( ".publisher" ).css( {"width": "49%"} );
 	    $( "#subscribersDiv" ).css( {"display": "inline-block"} );
     }
   },
@@ -30,6 +30,6 @@ session.connect(token.value, function(error) {
 	} else {
 		$( ".publisher" ).css( {"display": "inline-block"} );
 		$( ".loading" ).hide();
-	  	session.publish( 'myPublisherDiv', {width: "100%", height: 400} ); 
+	  	session.publish( 'myPublisherDiv', {width: "100%", height: 400} );
 	}
 });
